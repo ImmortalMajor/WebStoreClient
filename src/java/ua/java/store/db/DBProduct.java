@@ -162,10 +162,12 @@ public class DBProduct {
         PreparedStatement stmnt;
         
         if(choise == 1){
+                 System.out.println("by type");
             stmnt = con.prepareStatement("SELECT p.id_p, p.name_p, t.name_t, m.name_m, p.cost, p.discont, p.image_p, p.desc_p"
                 + " FROM webstore.product p, webstore.manuf m, webstore.type_ t"
                 + " where p.id_m = m.id_m and p.id_t = t.id_t and t.name_t = ? order by p.discont desc;");
         } else {
+                 System.out.println("by manuf");
             stmnt = con.prepareStatement("SELECT p.id_p, p.name_p, t.name_t, m.name_m, p.cost, p.discont, p.image_p, p.desc_p"
                 + " FROM webstore.product p, webstore.manuf m, webstore.type_ t"
                 + " where p.id_m = m.id_m and p.id_t = t.id_t and m.name_m = ? order by p.discont desc;");

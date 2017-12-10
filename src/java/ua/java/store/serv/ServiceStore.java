@@ -36,7 +36,7 @@ public class ServiceStore {
     }
     
     public ArrayList<Product> getProducts(String type, String manuf){  
-        if((type == null || type.equals("")) && (manuf == null || manuf.equals(""))) 
+        if(type == null && manuf == null)
                  return getAllProducts();
         else
                  return DBProduct.getInstance().getProducts(type, manuf);

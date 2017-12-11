@@ -36,10 +36,10 @@ public class DBProduct {
         return null;
     }
     
-    public ArrayList<Product> getProduct(int id){
+    public Product getProduct(int id){
         
         try {
-            return getProducts(getProductStmnt(id));
+            return getProducts(getProductStmnt(id)).get(0);
         } catch (SQLException ex) {
             Logger.getLogger(DBProduct.class.getName()).log(Level.SEVERE, null, ex);
         } 

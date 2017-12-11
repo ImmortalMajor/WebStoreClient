@@ -35,6 +35,10 @@ public class ServiceStore {
         return DBProduct.getInstance().getProducts();
     }
     
+    public Product getProduct(int id){    
+        return DBProduct.getInstance().getProduct(id);
+    }
+    
     public ArrayList<Product> getProducts(String type, String manuf){  
         if(type == null && manuf == null)
                  return getAllProducts();

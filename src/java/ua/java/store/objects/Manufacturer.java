@@ -1,6 +1,8 @@
 package ua.java.store.objects;
 
-public class Manufacturer {
+import java.io.Serializable;
+
+public class Manufacturer implements Serializable{
     
     private int id;
     private String name_m;

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+
+            <nav class="left-menu">
+                <h2 class="left-menu-logo">WebStore</h2>
+                <br/><br/><br/>
+                
+                <h:form id="left-menu-form">
+                    <ul class="left-menu-nav" id="left-menu-nav">
+                        <li id="show-products" onclick="show('#products-types')">Товары</li>
+                        <li id="products-types">
+
+                            <ul class="left-menu-products">
+
+                                <ui:repeat value="#{types.types}" var="t" >
+                                    <li>
+                                        <h:commandLink>
+                                            <h4>#{t}</h4>
+                                            <f:ajax render=":products" event="click" listener="#{products.sortBy('type', t)}" />
+                                        </h:commandLink>
+                                    </li>
+                                </ui:repeat>
+
+                            </ul> 
+
+                        </li>
+                        <li>Контакты</li>
+                        <li>О нас</li>
+                        <li>
+                            <h:commandLink styleClass="full">Вход
+                                <f:ajax render=":autorization" event="click" onevent="show('#autorization')"/>
+                            </h:commandLink>
+                        </li>
+                    </ul>
+                </h:form>
+
+            </nav>
+
+        </ui:composition>
+    </h:body>
+</html>
+

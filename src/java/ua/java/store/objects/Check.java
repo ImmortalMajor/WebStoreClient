@@ -1,7 +1,8 @@
 package ua.java.store.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Check {
+public class Check implements Serializable{
 
     private int id;
     private String name_u;

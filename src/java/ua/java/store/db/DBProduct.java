@@ -36,6 +36,17 @@ public class DBProduct {
         return null;
     }
     
+    public ArrayList<Product> getProduct(int id){
+        
+        try {
+            return getProducts(getProductStmnt(id));
+        } catch (SQLException ex) {
+            Logger.getLogger(DBProduct.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        return null;
+    }
+    
     public ArrayList<Product> getProducts(String type, String manuf){
         
         try {
@@ -154,6 +165,15 @@ public class DBProduct {
         PreparedStatement stmnt = con.prepareStatement("SELECT p.id_p, p.name_p, t.name_t, m.name_m, p.cost, p.discont, p.image_p, p.desc_p"
                 + " FROM webstore.product p, webstore.manuf m, webstore.type_ t"
                 + " where p.id_m = m.id_m and p.id_t = t.id_t order by p.discont desc;");
+        return stmnt;
+    } 
+    
+    private PreparedStatement getProductStmnt(int id) throws SQLException{
+        Connection con = Connector.getInstance().getConnection();
+        PreparedStatement stmnt = con.prepareStatement("SELECT p.id_p, p.name_p, t.name_t, m.name_m, p.cost, p.discont, p.image_p, p.desc_p"
+                + " FROM webstore.product p, webstore.manuf m, webstore.type_ t"
+                + " where p.id_m = m.id_m and p.id_t = t.id_t and p.id_p = ? order by p.discont desc;");
+        stmnt.setInt(1, id);
         return stmnt;
     } 
     

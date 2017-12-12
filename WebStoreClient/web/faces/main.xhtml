@@ -4,42 +4,53 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition>
             <section class="main-conteiner">
+                
                 <h:form id="manufs-form">
+                    
                     <div class="main-conteiner-manufs" id="manufs">
 
                         <ui:repeat value="#{manufs.manufs}" var="m">
+                            
                             <h:commandLink>
+                                
                                 <div class="main-conteiner-manuf">
                                     <div class="image" style="background: url(#{m.logo}) no-repeat center"></div>
                                     <h3>#{m.nameM}</h3>
                                 </div>
-                                <f:ajax render=":products" event="click" listener="#{products.sortBy('manuf', m.nameM)}" />
+                                
+                                <f:ajax execute="@form" event="click" listener="#{products.sortBy('manuf', m.nameM)}" render=":products"/>
+                                
                             </h:commandLink>
+                            
                         </ui:repeat>
 
-                    </div>    
+                    </div>   
+                    
                 </h:form>
                     
                 <h:panelGroup styleClass="main-conteiner-products"  id="products" layout="block">
-                    <ui:repeat value="#{products.product}" var="p">
+                    
+                    <ui:repeat value="#{products.products}" var="p">
                         
                             <div class="main-conteiner-product">
+                                
                                 <h:form id="select-product-form">
                                     
                                     <!-- Show selected product -->
                                     <h:commandLink>
                                         
                                         <div class="image" style="background: url(#{p.image}) no-repeat center"></div>
-                                        <f:param name="productId" value="#{p.id}"/>
-                                        <f:ajax render=":product" execute="@form" event="click" onevent="show('#conteiner-product')"
-                                                listener="#{curProd.setProduct()}"/>
+                                        
+                                        <f:ajax render=":product" event="click" onevent="show('#conteiner-product')"
+                                                listener="#{curProd.setProduct(p.id)}"/>
                                         
                                     </h:commandLink> 
                                     <!-- Show selected product -->
@@ -52,13 +63,17 @@
                                 <h:panelGroup rendered="#{p.discont == 0.0}">
                                     <h5 class="f-n">#{p.cost}$</h5>
                                 </h:panelGroup>
+                                
                                 <h:panelGroup rendered="#{p.discont > 0.0}">
                                     <h5 class="f-n allert">#{p.cost}$    ( -#{p.discont * 100}% )</h5>
                                 </h:panelGroup>
+                                
                             </div>
                         
                     </ui:repeat>
+                    
                 </h:panelGroup>
+                
             </section>
         </ui:composition>
     </h:body>

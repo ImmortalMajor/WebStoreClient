@@ -32,7 +32,6 @@ public class BasketList implements java.io.Serializable {
          
          public void removeFromBasket(Product p) {
                   basket.remove(p);
-                  System.out.println(basket.size());
          }
          
 }

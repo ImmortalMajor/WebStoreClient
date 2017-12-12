@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import web.java.connector.Service;
 import web.java.service.Product;
 
 @ManagedBean(name = "products")
-@ViewScoped
+@SessionScoped
 public class ProductList implements Serializable{
 
          private List<Product> products;
@@ -18,14 +18,14 @@ public class ProductList implements Serializable{
          
          @PostConstruct
          public void init() {
-                  if(products == null) {products = Service.getServ().getAllProducts();}
+                  sortList(type, manuf);
          }
          
-         public List<Product> getProduct() {
+         public List<Product> getProducts() {
                   return products;
          }
 
-         public void setProduct(List<Product> products) {
+         public void setProducts(List<Product> products) {
                   this.products = products;
          }
          
@@ -45,7 +45,8 @@ public class ProductList implements Serializable{
                                     break;
                   }
                   
-                  System.out.println(type + "," + manuf);
                   sortList(type, manuf);
          }
+
+    
 }

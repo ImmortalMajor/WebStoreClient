@@ -21,7 +21,7 @@
                         <h2>#{curProd.product.name}</h2>
                         <h4 class="f-l">#{curProd.product.type}</h4>
                         <h4 class="f-r">#{curProd.product.manuf}</h4>
-                        <br  class="f-n"/>
+                        <br class="f-n"/>
 
                         <h:form id="product-form">
                             <p>
@@ -38,9 +38,11 @@
 
                             <br/>
                             <h:commandLink class="btn-black">
+                                
                                 В корзину
                                 <f:ajax render=":basket" event="click" onevent="show('#conteiner-product')" 
                                         listener="#{basket.addToBasket(curProd.product)}"/>
+                                
                             </h:commandLink>
                             
                         </h:form>

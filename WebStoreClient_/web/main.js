@@ -37,3 +37,15 @@ function clearChecked(el) {
         $(this).removeClass("checked");
     });
 }
+/*
+function send(el) {
+    $.ajax({
+        url: "Servlet",
+        type: "POST", 
+        data: {manuf: "qwerty"},
+        complete: function(data) {
+                $("#left-menu-logo").html(data);
+        }
+    });     
+}
+*/

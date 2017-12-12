@@ -1,4 +1,7 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="web.java.connector.Service"%>
+<%@page import="web.service.Product"%>
+<%@page import="java.util.List"%>
 <%@ page pageEncoding="UTF-8" %>
 
 <nav class="left-menu">
@@ -14,7 +17,7 @@
             <li id="products-types">
 
                 <ul class="left-menu-products">
-<!--
+                    <!--
                     <ui:repeat value="" var="t" >
                         <li>
                         
@@ -30,7 +33,17 @@
                         
                         </li>
                     </ui:repeat>
--->
+                    -->
+                    <%
+                    List<Product> products = Service.getServ().getAllProducts();
+                    for(Product p : products) {
+                    %>
+                        <li>
+                            <h4><%= p.getName() %></h4>
+                        </li>
+                    <%
+                        }
+                    %>
                 </ul> 
 
             </li>

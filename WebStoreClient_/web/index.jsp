@@ -8,8 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JSP Page</title>
+        <title>WebStore</title>
         <%@include file="WEB-INF/jspf/head.jspf" %>
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
     </head>
     <body>
         <%@include file="WEB-INF/jspf/leftmenu.jspf" %>

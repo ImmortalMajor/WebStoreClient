@@ -162,6 +162,13 @@ h1, h2, h3, h4, h5, h6 {
         cursor: pointer;
     }
     
+    .main-conteiner-product . {
+        width: 26%;
+        padding: 0 3% 0 3%;
+        margin-bottom: 1em;
+        cursor: pointer;
+    }
+    
         @media screen and (max-width: 1152px) {
             .main-conteiner-product {
                 width: 43%;
@@ -229,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
     }
     
-.autorization {
+.comment {
     width: 400px;
     position: fixed;
     left: 21.5%;
@@ -241,13 +248,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
     @media screen and (max-width: 1152px) {
-        .autorization {
+        .comment {
             left: 26.5%;
         }
     }
 
-    .autorization input[type="text"], 
-    .autorization input[type="password"] {
+    .comment input[type="text"], 
+    .comment input[type="password"],
+    textarea {
         width: 97%;
         margin-bottom: 0.8em;
     } 
@@ -256,6 +264,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     width: 18%;
     height: 98vh;
+    overflow: scroll;
     background-color: #fff;
     border-left: solid 2px #666666;
     top: 0;
@@ -279,6 +288,22 @@ h1, h2, h3, h4, h5, h6 {
         background: url(images/basket.png) no-repeat center;
         background-size: contain;
         cursor: pointer;
+    }
+    
+    .basket-exit {
+        cursor: pointer;
+    }
+    
+    .basket-product {
+        width: 100%;
+        margin-top: 1em;
+        cursor: pointer;
+    }
+    
+    .basket-product .image {
+        width: 100%;
+        padding-top: 100%;
+        background-size: cover !important;
     }
  
 .conteiner-lg {
@@ -326,6 +351,15 @@ input[type="text"], input[type="password"] {
     background: #fff;
 }
 
+.textarea {
+    border: none;
+    box-shadow: 0 0 0 1px rgb(30,30,30) inset;
+    padding: 0.2em 0.4em;
+    font-weight: 600;
+    font-size: 12pt;
+    background: #fff;
+}
+
 .f-r {
     float: right;
 }
@@ -364,4 +398,8 @@ input[type="text"], input[type="password"] {
     display: block;
     width: 100%;
     height: 100%;
+}
+
+.scroll {
+    overflow: scroll;
 }

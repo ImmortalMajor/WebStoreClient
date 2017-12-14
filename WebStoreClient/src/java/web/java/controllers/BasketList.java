@@ -1,21 +1,25 @@
 package web.java.controllers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import web.java.connector.Service;
 import web.java.service.Product;
 
-@ManagedBean(name = "basket")
+@ManagedBean(name = "basket", eager = true)
 @SessionScoped
-public class BasketList implements java.io.Serializable {
+public class BasketList implements Serializable {
          
          private List<Product> basket;
          
          @PostConstruct
          public void init() {
-                  if(basket == null || basket.size() < 1) {basket = new ArrayList();}
+                  if(basket == null) { basket = new ArrayList(); }
          }
 
          public List<Product> getBasket() {
@@ -26,12 +30,29 @@ public class BasketList implements java.io.Serializable {
                   this.basket = basket;
          }
          
-         public void addToBasket(Product p) {
-                  basket.add(p);
+         public void add() {
+                  basket.add(getSelectedProduct("basketAdd"));
          }
          
-         public void removeFromBasket(Product p) {
-                  basket.remove(p);
-         }
+         public void remove() {
+                  Product selectedProd = getSelectedProduct("basketRemove");
+                  Product removedProd = null;
+                  
+                  for(Product p : basket) {
+                           if(p.getId() == selectedProd.getId()) {
+                                    removedProd = p;
+                           }
+                  }
+                  
+                  basket.remove(removedProd);
+         }       
          
+         private Product getSelectedProduct(String param) {
+                  
+                  Map<String, String> params = 
+                           FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+                  
+                  int id = Integer.parseInt(params.get(param));
+                  return Service.getServ().getProduct(id);
+         }
 }

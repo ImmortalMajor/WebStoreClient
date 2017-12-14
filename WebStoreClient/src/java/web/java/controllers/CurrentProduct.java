@@ -15,7 +15,9 @@ public class CurrentProduct implements Serializable{
          private Product product;
 
          public Product getProduct() {
+                  
                   Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+                  
                   if(params.get("productId") != null) {
                            product = Service.getServ().getProduct(Integer.valueOf(params.get("productId")));
                            return product;

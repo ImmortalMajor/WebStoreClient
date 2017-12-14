@@ -1,5 +1,7 @@
 $(document).ready(() => {
     
+    $("#basket").addClass("disabled");
+    
     $("#products-types li").click(function (){
         check(this, "#products-types li");
     });

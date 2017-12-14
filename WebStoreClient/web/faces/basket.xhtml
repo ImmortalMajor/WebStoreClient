@@ -13,21 +13,25 @@
             <div class="basket-image" id="basket-image" onclick="show('#basket')">
             </div>
 
-            <h:panelGroup layout="block" id="basket" styleClass="basket disabled">
+            <h:panelGroup layout="block" id="basket" styleClass="basket">
+                
                 <strong class="f-l basket-exit" onclick="show('#basket')">X</strong> <br/>
+                
                 <h:form>
-
-
-
+                    
                     <ui:repeat value="#{basket.basket}" var="b">
 
                         <div class="basket-product">
 
                             <h:commandLink hreflang="index.xhtml">
+                                
                                 <div class="image" style="background: url(#{b.image}) no-repeat center"></div>
+                                
+                                <f:param name="curProd" value="basket"/>
                                 <f:param name="productId" value="#{b.id}"/>
                                 <f:ajax render=":product" execute="@form" event="click"
                                         onevent="show('#conteiner-product')"/>
+                                
                             </h:commandLink> 
 
                             <h3 class="f-l">#{b.name}</h3>
@@ -36,13 +40,14 @@
                             <h:panelGroup rendered="#{b.discont == 0.0}">
                                 <h5 class="f-n">#{b.cost}$</h5>
                             </h:panelGroup>
+                            
                             <h:panelGroup rendered="#{b.discont > 0.0}">
                                 <h5 class="f-n allert">#{b.cost}$    ( -#{b.discont * 100}% )</h5>
                             </h:panelGroup>
 
                             <h5 class="f-l">размер: 42</h5>
                             <h5 class="f-l">кол-во: 1шт.</h5>
-                            <h4 class="f-l">#{b.id}</h4>
+                            
                         </div>
 
                     </ui:repeat>

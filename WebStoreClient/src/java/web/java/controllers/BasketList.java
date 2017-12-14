@@ -51,7 +51,6 @@ public class BasketList implements Serializable {
                   
                   Map<String, String> params = 
                            FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-                  
                   int id = Integer.parseInt(params.get(param));
                   return Service.getServ().getProduct(id);
          }

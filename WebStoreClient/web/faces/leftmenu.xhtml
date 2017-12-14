@@ -14,7 +14,7 @@
                 <h2 class="left-menu-logo"><h:link hreflang="index.xhtml">WebStore</h:link></h2>
                 <br/><br/><br/>
                 
-                <h:form id="left-menu-form">
+                <h:form>
                     
                     <ul class="left-menu-nav" id="left-menu-nav">
                         
@@ -30,8 +30,7 @@
                                         <h:commandLink>
                                             
                                             <h4>#{t}</h4>
-                                            <f:ajax execute="@form" event="click" listener="#{products.sortBy('type', t)}" render=":products"/>
-                                          
+                                            <f:ajax render=":products" event="click" listener="#{products.sortBy('type', t)}"/>
                                         </h:commandLink>
                                         
                                     </li>

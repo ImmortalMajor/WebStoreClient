@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     position: fixed;
     box-shadow: 0 0 5px 5px rgba(0,0,0,0.8);
-    z-index: 1000;
+    z-index: 900;
 }
 
     @media screen and (max-width: 1152px) {
@@ -199,7 +199,7 @@ h1, h2, h3, h4, h5, h6 {
    justify-content: center;
    position: fixed;
    top: 0;
-   z-index: 1000;
+   z-index: 1100;
 }    
 
     .product {
@@ -260,21 +260,27 @@ h1, h2, h3, h4, h5, h6 {
         margin-bottom: 0.8em;
     } 
     
-.basket {
+.conteiner-basket {
     position: fixed;
-    width: 18%;
+    width: 20%;
     height: 98vh;
     overflow: scroll;
     background-color: #fff;
-    border-left: solid 2px #666666;
+    box-shadow: 0 0 0 5000px rgba(0,0,0,0.6);
     top: 0;
     right: 0;
     padding: 1%;
     text-align: center;
+    z-index: 1000;
 }
 
+.basket {
+    width: 100%;
+}
+
+
     @media screen and (max-width: 1152px) {
-        .basket {
+        .conteiner-basket {
             width: 25%;
         }
     }
@@ -297,7 +303,8 @@ h1, h2, h3, h4, h5, h6 {
     .basket-product {
         width: 100%;
         margin-top: 1em;
-        cursor: pointer;
+        border-bottom: solid 2px #000;
+        border-left: solid 2px #000;
     }
     
     .basket-product .image {
@@ -349,6 +356,10 @@ input[type="text"], input[type="password"] {
     font-weight: 600;
     font-size: 12pt;
     background: #fff;
+}
+
+input {
+    cursor: pointer;
 }
 
 .textarea {

@@ -46,7 +46,6 @@
 
                                 <div class="image" style="background: url(#{p.image}) no-repeat center"></div>
 
-                                <f:param name="curProd" value="main"/>
                                 <f:param name="productId" value="#{p.id}"/>
                                 <f:ajax render=":product" execute="@form" event="click"
                                         onevent="show('#conteiner-product')"/>

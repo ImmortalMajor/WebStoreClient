@@ -10,51 +10,59 @@
     <h:body>
         <ui:composition>
 
-            <div class="basket-image" id="basket-image" onclick="show('#basket')">
+            <div class="basket-image" id="basket-image" onclick="show('#conteiner-basket')">
             </div>
 
-            <h:panelGroup layout="block" id="basket" styleClass="basket">
-                
-                <strong class="f-l basket-exit" onclick="show('#basket')">X</strong> <br/>
-                
-                <h:form>
-                    
-                    <ui:repeat value="#{basket.basket}" var="b">
+            <h:panelGroup layout="block" id="conteiner-basket" styleClass="conteiner-basket disabled">
 
-                        <div class="basket-product">
+                <h:panelGroup layout="block" id="basket" styleClass="basket">
 
-                            <h:commandLink hreflang="index.xhtml">
-                                
+                    <strong class="f-l basket-exit" onclick="show('#conteiner-basket')">X</strong>
+                    <h:form>
+                        
+                        <h:commandLink styleClass="btn-black f-r">Купить</h:commandLink>
+                        <br/>
+
+                        <ui:repeat value="#{basket.basket}" var="b">
+
+                            <h:panelGroup styleClass="basket-product" layout="block"> 
+
                                 <div class="image" style="background: url(#{b.image}) no-repeat center"></div>
+
+                                <h3 class="f-l">#{b.name}</h3>
+                                <h4 class="f-r">#{b.manuf}</h4>
+
+                                <div class="f-n"/>
+                                <h:panelGroup rendered="#{b.discont == 0.0}">
+                                    <h5 class="f-l">#{b.cost}$</h5>
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{b.discont > 0.0}">
+                                    <h5 class="f-l allert">#{b.cost}$    ( -#{b.discont * 100}% )</h5>
+                                </h:panelGroup>
+
+                                <h5 class="f-r">| размер: #{b.size}</h5>
+                                <h5 class="f-r">кол-во: #{b.amount} |</h5>
+                                <br/><br/>
                                 
-                                <f:param name="curProd" value="basket"/>
-                                <f:param name="productId" value="#{b.id}"/>
-                                <f:ajax render=":product" execute="@form" event="click"
-                                        onevent="show('#conteiner-product')"/>
+                                <h:commandButton styleClass="btn-black f-r" value="Удалить">
+                                    
+                                    <f:param name="basket" value="#{b.id}"/>
+                                    <f:param name="basketAction" value="Удалить"/>
+                                    <f:ajax event="click" execute="@form" render=":basket" listener="#{basket.basketAction}"/>
+                                    
+                                </h:commandButton>
+                                <br/>
                                 
-                            </h:commandLink> 
-
-                            <h3 class="f-l">#{b.name}</h3>
-                            <h4 class="f-r">#{b.manuf}</h4>
-
-                            <h:panelGroup rendered="#{b.discont == 0.0}">
-                                <h5 class="f-n">#{b.cost}$</h5>
                             </h:panelGroup>
-                            
-                            <h:panelGroup rendered="#{b.discont > 0.0}">
-                                <h5 class="f-n allert">#{b.cost}$    ( -#{b.discont * 100}% )</h5>
-                            </h:panelGroup>
+                                
+                        </ui:repeat>
 
-                            <h5 class="f-l">размер: 42</h5>
-                            <h5 class="f-l">кол-во: 1шт.</h5>
-                            
-                        </div>
+                    </h:form>
 
-                    </ui:repeat>
+                </h:panelGroup>
 
-                </h:form>
-
-            </h:panelGroup>
+            </h:panelGroup>    
 
         </ui:composition>
     </h:body>

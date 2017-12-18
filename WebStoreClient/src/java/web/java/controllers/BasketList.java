@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.AjaxBehaviorEvent;
 import web.java.connector.Service;
 import web.java.service.Product;
 
@@ -16,6 +18,10 @@ import web.java.service.Product;
 public class BasketList implements Serializable {
          
          private List<Product> basket;
+         private int size;
+         private int amount;
+         
+         public BasketList(){}
          
          @PostConstruct
          public void init() {
@@ -30,12 +36,35 @@ public class BasketList implements Serializable {
                   this.basket = basket;
          }
          
-         public void add() {
-                  basket.add(getSelectedProduct("basketAdd"));
+         public void basketAction(AjaxBehaviorEvent e) throws AbortProcessingException{
+                  Map<String, String> params = 
+                           FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+                  
+                  int id = Integer.parseInt(params.get("basket"));
+                  
+                  switch(params.get("basketAction")) {
+                           
+                           case "В корзину": add(id); System.out.println("add"); break;
+                           case "Удалить": remove(id); System.out.println("del"); break;
+                           default: System.out.println("no action");
+                  }
          }
          
-         public void remove() {
-                  Product selectedProd = getSelectedProduct("basketRemove");
+         private void add(int id) {
+                  if(checkBasket(id)){
+                           Product p = Service.getServ().getProduct(id);
+                           p.setAmount(amount);
+                           p.setSize(size);
+                           
+                           basket.add(p);
+                  }
+                  
+                  size = 0;
+                  amount = 0;
+         }
+         
+         private void remove(int id) {
+                  Product selectedProd = Service.getServ().getProduct(id);
                   Product removedProd = null;
                   
                   for(Product p : basket) {
@@ -46,12 +75,30 @@ public class BasketList implements Serializable {
                   
                   basket.remove(removedProd);
          }       
-         
-         private Product getSelectedProduct(String param) {
+
+         private boolean checkBasket(int id) {
                   
-                  Map<String, String> params = 
-                           FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-                  int id = Integer.parseInt(params.get(param));
-                  return Service.getServ().getProduct(id);
+                  for(Product p : basket) {
+                           if(p.getId() == id) {
+                                    return false;
+                           }
+                  }
+                  return true;
+         }
+
+         public int getSize() {
+                  return size;
+         }
+
+         public void setSize(int size) {
+                  this.size = size;
+         }
+
+         public int getAmount() {
+                  return amount;
+         }
+         
+         public void setAmount(int amount) {
+                  this.amount = amount;
          }
 }

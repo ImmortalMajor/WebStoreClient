@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import web.java.connector.Service;
+import web.java.functions.Messenger;
 import web.java.service.Product;
 
 @ManagedBean(name = "products")
-@SessionScoped
+@ViewScoped
 public class ProductList implements Serializable{
 
          private List<Product> products;
@@ -47,6 +49,4 @@ public class ProductList implements Serializable{
                   
                   sortList(type, manuf);
          }
-
-    
 }

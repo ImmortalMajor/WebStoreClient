@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -34,45 +33,23 @@
 
                             <div class="flex center">
                                 <h4>Размер</h4>
-                                <h:inputText id="size"/>
+                                <h:inputText id="size" value="#{basket.size}"/>
 
                                 <h4>Количество</h4>
-                                <h:inputText id="amount"/>
+                                <h:inputText id="amount" value="#{basket.amount}"/>
                             </div>
 
                             <br/>
+                            
+                            <h:commandLink styleClass="btn-black">
 
-                            <h:panelGroup rendered="#{b.discont == 0.0}">
-                                <h5 class="f-n">#{b.cost}$</h5>
-                            </h:panelGroup>
-                            
-                            <h:panelGroup rendered="#{b.discont > 0.0}">
-                                <h5 class="f-n allert">#{b.cost}$    ( -#{b.discont * 100}% )</h5>
-                            </h:panelGroup>
-                            
-                            <h:panelGroup rendered="#{param['curProd'].equals('main')}" layout="block">
+                                В корзину
+                                <f:param name="basket" value="#{curProd.product.id}"/>
+                                <f:param name="basketAction" value="В корзину"/>
                                 
-                                    <h:commandLink styleClass="btn-black">
+                                <f:ajax event="click" execute="@form" render=":basket" listener="#{basket.basketAction}"/>
 
-                                        В корзину
-                                        <f:param name="basketAdd" value="#{curProd.product.id}"/>
-                                        <f:ajax event="click" render=":basket" listener="#{basket.add()}"/>
-
-                                    </h:commandLink>
-                                
-                            </h:panelGroup>
-
-                            <h:panelGroup rendered="#{param['curProd'].equals('basket')}" layout="block">
-                            
-                                <h:commandLink styleClass="btn-black">
-
-                                    Удалить
-                                    <f:param name="basketRemove" value="#{curProd.product.id}"/>
-                                    <f:ajax event="click" render=":basket" listener="#{basket.remove()}"/>
-
-                                </h:commandLink>
-                            
-                            </h:panelGroup>
+                            </h:commandLink>
                             
                         </h:form>
 

@@ -2,6 +2,7 @@
     font-family: sans-serif;
     letter-spacing: 1px;
     outline: none;
+    font-family: 'Nunito', sans-serif;
 }
 
 body {
@@ -25,6 +26,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
     
+label {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.6em;
+    padding-top: 5px;
+}
+
 .left-menu {
     height: 100%;
     width: 20%;
@@ -96,6 +104,14 @@ h1, h2, h3, h4, h5, h6 {
             background-color: #666666;
             box-shadow: 0 0 5px 5px rgba(0,0,0,0.2) inset;
         }
+        
+.slider {
+    float: right;
+    height: 100vh;
+    width: 80%;
+    background-size: cover !important;
+    box-shadow: 0 0 0 5000px rgba(0,0,0,0.3) inset;
+}
     
 .main-conteiner {
     width: 78%;
@@ -162,13 +178,6 @@ h1, h2, h3, h4, h5, h6 {
         cursor: pointer;
     }
     
-    .main-conteiner-product . {
-        width: 26%;
-        padding: 0 3% 0 3%;
-        margin-bottom: 1em;
-        cursor: pointer;
-    }
-    
         @media screen and (max-width: 1152px) {
             .main-conteiner-product {
                 width: 43%;
@@ -190,6 +199,10 @@ h1, h2, h3, h4, h5, h6 {
         padding-top: 100%;
         background-size: cover !important;
     }
+    
+    .main-conteiner-product h3{
+        height: 45px;
+    }
   
 .conteiner-product {
    width: 100vw;
@@ -204,10 +217,17 @@ h1, h2, h3, h4, h5, h6 {
 
     .product {
         width: 700px;
-        height: 400px;
+        /*height: 400px;*/
         background-color: #fff;
         box-shadow: 0 0 0 5000px rgba(0,0,0,0.8);
         display: flex;
+    }
+    
+    .product p {
+        text-align: justify;
+        font-size: 0.9em;
+        font-weight: 600;
+        text-transform: lowercase;
     }
 
     .product > * {
@@ -216,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .product .image {
-        height: 100%;
+        padding-top: 50%;
         background-size: contain !important;
     }
     
@@ -281,7 +301,7 @@ h1, h2, h3, h4, h5, h6 {
 
     @media screen and (max-width: 1152px) {
         .conteiner-basket {
-            width: 25%;
+            width: 30%;
         }
     }
     
@@ -289,8 +309,8 @@ h1, h2, h3, h4, h5, h6 {
         position: fixed;
         width: 40px;
         height: 40px;
-        top: 20px;
-        right: 20px;
+        top: 10px;
+        right: 10px;
         background: url(images/basket.png) no-repeat center;
         background-size: contain;
         cursor: pointer;
@@ -311,6 +331,63 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
         padding-top: 100%;
         background-size: cover !important;
+    }
+    
+.order-conteiner {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: fixed;
+   top: 0;
+   z-index: 1500;
+}
+
+    .order {
+        width: 700px;
+        height: 400px;
+        background-color: #fff;
+        box-shadow: 0 0 0 5000px rgba(0,0,0,0.7);
+        padding: 10px;
+    }
+    
+    .order .exit {
+        cursor: pointer;
+        /*margin-left: 97%;*/
+        
+    }
+    
+    .order input[type="text"] {
+        width: 98%;
+    }
+    
+.info {
+    width: 78%;
+    float: right;
+    margin: 0;
+    padding: 1em 1em 1em 0;
+    text-align: center;
+}
+
+    .table-size {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .table-size thead {
+        background-color: #cccccc;
+        font-weight: 600;
+    }
+    
+    .table-size td:nth-child(1) {
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .table-size td {
+        padding: 5px;
+        border: solid 2px black;
     }
  
 .conteiner-lg {
@@ -413,4 +490,8 @@ input {
 
 .scroll {
     overflow: scroll;
+}
+
+span[id*="Valid"] {
+    color: red;
 }

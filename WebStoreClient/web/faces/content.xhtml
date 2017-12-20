@@ -8,6 +8,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        
         <ui:composition>
 
             <section class="main-conteiner">
@@ -23,6 +24,7 @@
                                 <div class="main-conteiner-manuf">
                                     <div class="image" style="background: url(#{m.logo}) no-repeat center"></div>
                                     <h3>#{m.nameM}</h3>
+                                    
                                 </div>
 
                                 <f:ajax execute="@form" event="click" listener="#{products.sortBy('manuf', m.nameM)}" render=":products"/>
@@ -33,7 +35,7 @@
 
                     </div>   
 
-                </h:form>        
+                </h:form>
 
                 <h:panelGroup styleClass="main-conteiner-products"  id="products" layout="block">
 
@@ -53,8 +55,7 @@
                             </h:commandLink> 
                             <!-- Show selected product -->
 
-                            <h3 class="f-l">#{p.name}</h3>
-                            <h4 class="f-r">#{p.manuf}</h4>
+                            <h3 class="f-n">#{p.name}</h3>
 
                             <h:panelGroup rendered="#{p.discont == 0.0}">
                                 <h5 class="f-n">#{p.cost}$</h5>
@@ -73,6 +74,7 @@
             </section>
             
         </ui:composition>
+        
     </h:body>
 </html>
 

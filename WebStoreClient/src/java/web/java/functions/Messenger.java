@@ -20,22 +20,13 @@ import javax.naming.NamingException;
 @ManagedBean(name = "mes")
 @RequestScoped
 public class Messenger {
-
-         //private String fio;
-         //private String email;
-         //private String message;
          
          private final String MAIL_SUPPORT_PARAM = "mail.SUPPORT";
          private String message = "";
          private String email = "";
          private String fio = "";
-/*
-         public Messenger(String fio, String email, String message) {
-                  this.fio = fio;
-                  this.email = email;
-                  this.message = message;
-         }
-*/
+         private String fullMessage = "";
+         
          public void send() {
                   try {
 
@@ -44,11 +35,14 @@ public class Messenger {
                            Message msg = new MimeMessage(getSession());
 
                            InternetAddress to = new InternetAddress(mailRecipient);
-                           InternetAddress from = new InternetAddress(email);
+                           //InternetAddress from = new InternetAddress(email);
                            
                            msg.setRecipient(RecipientType.TO, to);
-                           msg.setFrom(from);
-                           msg.setText(getFio() + ". " + getMessage());
+                           //msg.setFrom(from);
+                           if(fullMessage.equals(""))
+                                    fullMessage = getFio() + ". " + getMessage();
+                           
+                           msg.setText(fullMessage);
                            msg.setSubject(getEmail());
                            
                            Transport.send(msg);
@@ -88,5 +82,13 @@ public class Messenger {
          
          public void setFio(String fio) {
                   this.fio = fio;
+         }
+
+         public String getFullMesage() {
+                  return fullMessage;
+         }
+
+         public void setFullMesage(String fullMessage) {
+                  this.fullMessage = fullMessage;
          }
 }

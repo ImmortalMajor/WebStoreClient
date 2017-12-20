@@ -20,7 +20,11 @@
                     <strong class="f-l basket-exit" onclick="show('#conteiner-basket')">X</strong>
                     <h:form>
                         
-                        <h:commandLink styleClass="btn-black f-r">Купить</h:commandLink>
+                        <h:commandLink styleClass="btn-black f-r">Купить
+                        
+                            <f:ajax event="click" execute="@form" render=":order" onevent="show('#order-conteiner')"/>
+                        
+                        </h:commandLink>
                         <br/>
 
                         <ui:repeat value="#{basket.basket}" var="b">
@@ -30,6 +34,7 @@
                                 <div class="image" style="background: url(#{b.image}) no-repeat center"></div>
 
                                 <h3 class="f-l">#{b.name}</h3>
+                                <h4 class="f-l">#{b.type}</h4>
                                 <h4 class="f-r">#{b.manuf}</h4>
 
                                 <div class="f-n"/>

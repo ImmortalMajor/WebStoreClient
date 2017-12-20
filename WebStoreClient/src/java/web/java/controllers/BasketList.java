@@ -18,8 +18,8 @@ import web.java.service.Product;
 public class BasketList implements Serializable {
          
          private List<Product> basket;
-         private int size;
-         private int amount;
+         private int size = 42;
+         private int amount = 1;
          
          public BasketList(){}
          
@@ -37,6 +37,10 @@ public class BasketList implements Serializable {
          }
          
          public void basketAction(AjaxBehaviorEvent e) throws AbortProcessingException{
+                  
+                  if(size < 42 || size > 56){ size = 42; return;}
+                  if(amount < 1){ amount = 1; return;}
+                  
                   Map<String, String> params = 
                            FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
                   
@@ -57,10 +61,10 @@ public class BasketList implements Serializable {
                            p.setSize(size);
                            
                            basket.add(p);
-                  }
+                  } 
                   
-                  size = 0;
-                  amount = 0;
+                  size = 42;
+                  amount = 1;
          }
          
          private void remove(int id) {
@@ -80,10 +84,20 @@ public class BasketList implements Serializable {
                   
                   for(Product p : basket) {
                            if(p.getId() == id) {
+                                    p.setAmount(amount);
+                                    p.setSize(size);
                                     return false;
                            }
                   }
                   return true;
+         }
+         
+         public void cleanBasket(String val) {
+                  System.out.println(val);
+                  if(val.equals("yes") && !basket.isEmpty()) {
+                           basket.clear();
+                           System.out.println("basket cleared");
+                  }
          }
 
          public int getSize() {
@@ -100,5 +114,14 @@ public class BasketList implements Serializable {
          
          public void setAmount(int amount) {
                   this.amount = amount;
+         }
+         
+         public int getFullCost() {
+                  int fullcost = 0;
+                  
+                  for(int i = 0; i < basket.size(); i++)
+                           fullcost += basket.get(i).getCost() * basket.get(i).getAmount();
+                  
+                  return fullcost;
          }
 }

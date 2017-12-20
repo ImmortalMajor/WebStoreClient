@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            
+            <h:panelGroup layout="block" styleClass="order-conteiner disabled" id="order-conteiner">
+                
+                <h:panelGroup layout="block" styleClass="order" id="order">
+                    
+                    <h2 class="exit f-r" onclick="show('#order-conteiner')">X</h2>
+                    <h2 class="center">ЗАКАЗ</h2>
+                    <h:form>
+                        
+                        ФИО
+                        <h:inputText value="#{order.fio}" styleClass="fio" onblur="fio(this)"/>
+                        
+                        E-mail <label class="f-r">example@ex.com</label>
+                        <h:inputText value="#{order.email}" styleClass="email" onblur="email(this)"/>
+                        
+                        Адресс <label class="f-r">адрес почтового отделения, куда придет посылка</label>
+                        <h:inputText value="#{order.address}" styleClass="address"/>
+                        
+                        Номер телефона <label class="f-r">+380XXXXXXX</label>
+                        <h:inputText value="#{order.phone}" styleClass="phone" onblur="phone(this)"/>
+  
+                    <hr/>
+                    Общая сумма: <h3>#{basket.fullCost}$</h3>
+                    
+                    <h:commandButton styleClass="btn-black" value="Готово">
+                        <f:ajax execute="@form" event="click" listener="#{basket.cleanBasket(order.makeOrder(basket.basket.size()))}"/>
+                    </h:commandButton>
+                    
+                    </h:form>
+                    
+                </h:panelGroup> 
+                
+            </h:panelGroup>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

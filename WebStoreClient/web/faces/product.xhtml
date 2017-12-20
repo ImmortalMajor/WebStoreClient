@@ -32,16 +32,24 @@
                             </p>
 
                             <div class="flex center">
-                                <h4>Размер</h4>
-                                <h:inputText id="size" value="#{basket.size}"/>
-
+                                <h:panelGroup rendered="#{curProd.product.type != 'головные уборы'}">
+                                    <h:outputLink value="faq.xhtml" target="_blank" 
+                                                  title="НАЖМИТЕ ЧТОБЫ ПРОСМОТРЕТЬ ТАБЛИЦУ РАЗМЕРОВ"><h4><ins>Размер</ins></h4>
+                                    </h:outputLink>
+                                    <h:inputText id="size" value="#{basket.size}" onblur="sizeValid(this)"/>
+                                </h:panelGroup>
+                                
                                 <h4>Количество</h4>
-                                <h:inputText id="amount" value="#{basket.amount}"/>
+                                <h:inputText id="amount" value="#{basket.amount}" onblur="amountValid(this)"/>
+                                
                             </div>
-
+                            
+                            <span id="sizeValid"></span>
+                            <span id="amountValid"></span>
+                            
                             <br/>
                             
-                            <h:commandLink styleClass="btn-black">
+                            <h:commandLink styleClass="btn-black" actionListener="#{basket.basketAction}">
 
                                 В корзину
                                 <f:param name="basket" value="#{curProd.product.id}"/>

@@ -12,14 +12,14 @@
         <ui:composition>
 
             <nav class="left-menu">
-                <h2 class="left-menu-logo"><h:link hreflang="index.xhtml">WebStore</h:link></h2>
-                <br/><br/><br/>
-                
                 <h:form>
+                    
+                <h2 class="left-menu-logo"><h:outputLink  value="index.xhtml">WebStore</h:outputLink></h2>
+                <br/><br/><br/>
                     
                     <ul class="left-menu-nav" id="left-menu-nav">
                         
-                        <li>Товары</li>
+                        <li><h:outputLink value="main.xhtml">Товары</h:outputLink></li>
                         
                         <li id="products-types">
 
@@ -45,6 +45,10 @@
                             <h:commandLink styleClass="full">Контакты
                                 <f:ajax execute="@form" event="click" onevent="show('#comment')"/>
                             </h:commandLink>
+                        </li>
+                        
+                        <li>
+                            <h:outputLink value="faq.xhtml" >Инфо</h:outputLink>
                         </li>
                         
                         <li>О нас</li>

@@ -10,18 +10,31 @@
         </ui:insert>
     </h:head>
     <h:body>
-
+        
         <ui:insert name="leftmenu">
             <ui:include src="/faces/leftmenu.xhtml"/>
         </ui:insert>
         
+        <ui:insert name="content">
+            <ui:include src="/faces/content.xhtml"/>
+        </ui:insert>
+        
+        <ui:insert name="product">
+            <ui:include src="/faces/product.xhtml"/>
+        </ui:insert>
+
         <ui:insert name="comment">
             <ui:include src="/faces/comment.xhtml"/>
         </ui:insert>
         
-        <div class="slider" 
-             style="background: url(https://hypb.imgix.net/image/2017/08/end-off-white-lookbook-001.jpg) no-repeat center center">
-        </div>
+        <ui:insert name="basket">
+            <ui:include src="/faces/basket.xhtml"/>
+        </ui:insert>
+        
+        <ui:insert name="order">
+            <ui:include src="/faces/order.xhtml"/>
+        </ui:insert>
+        
     </h:body>
 </html>
 

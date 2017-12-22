@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import ua.java.store.db.Connector;
 import ua.java.store.db.DBCheck;
 import ua.java.store.db.DBProduct;
-import ua.java.store.db.DBUser;
 import ua.java.store.objects.Check;
 import ua.java.store.objects.Product;
-import ua.java.store.objects.User;
 
 public class Test {
     
@@ -31,11 +29,6 @@ public class Test {
                 ArrayList<Product> listP = DBProduct.getInstance().getProducts();
                 for(int i = 0; i < listP.size(); i++)
                     System.out.println("Products : " + listP.get(i).getName());
-                
-                
-                ArrayList<User> listU = DBUser.getInstance().getUsers();
-                for(int i = 0; i < listU.size(); i++)
-                    System.out.println("Users : " + listU.get(i).getName());
                 
                 //DBUser.getInstance().deleteUser(3); DONE
                 

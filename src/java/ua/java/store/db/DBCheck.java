@@ -39,6 +39,7 @@ public class DBCheck {
     public int getChecks(){
         
         try {
+                 
             Connection con = Connector.getInstance().getConnection();
             PreparedStatement stmnt = con.prepareStatement("SELECT distinct c.id_c FROM webstore.check_ c;");
             ResultSet res = stmnt.executeQuery();
@@ -112,9 +113,9 @@ public class DBCheck {
     private PreparedStatement getChecksStmnt(int id) throws SQLException{
         Connection con = Connector.getInstance().getConnection();
         PreparedStatement stmnt = con.prepareStatement(""
-                + " SELECT c.id_c, u.name_u, p.id_p, p.name_p, t.name_t, m.name_m, c.size_p, p.cost, p.discont, c.amount_p, p.desc_p"
-                + " FROM webstore.check_ c, webstore.user_ u, webstore.product p, webstore.manuf m, webstore.type_ t"
-                + " where c.id_prod = p.id_p and c.id_u = u.id_u and p.id_m = m.id_m and p.id_t = t.id_t and c.id_c = ?;");
+                + " SELECT c.id_c, c.name_u, c.phone, p.id_p, p.name_p, t.name_t, m.name_m, c.size_p, p.cost, p.discont, c.amount_p, p.desc_p"
+                + " FROM webstore.check_ c, webstore.product p, webstore.manuf m, webstore.type_ t"
+                + " where c.id_prod = p.id_p and p.id_m = m.id_m and p.id_t = t.id_t and c.id_c = ?;");
         stmnt.setInt(1, id);
         return stmnt;
     }
@@ -122,20 +123,22 @@ public class DBCheck {
     //////////////////////////////// UPDATE ////////////////////////////////
     
     //////////////////////////////// INSERT ////////////////////////////////
-    public boolean insertCheck(int idU, ArrayList<Product> products){
+    
+    public boolean insertCheck(String name_u, String phone, ArrayList<Product> products){
         try {
             int idCheck = getChecks() + 1;
             
             Connection con = Connector.getInstance().getConnection();
-            PreparedStatement stmnt = con.prepareStatement("insert into webstore.check_ values(?, ?, ?, ?, ?, null);");
+            PreparedStatement stmnt = con.prepareStatement("insert into webstore.check_ values(?, ?, ?, ?, ?, ?, null);");
             
             for(int i = 0; i < products.size(); i++){
                 
                 stmnt.setInt(1, idCheck);
-                stmnt.setInt(2, idU);
-                stmnt.setInt(3, products.get(i).getId());
-                stmnt.setInt(4, products.get(i).getAmount());
-                stmnt.setInt(5, products.get(i).getSize());
+                stmnt.setString(2, name_u);
+                stmnt.setString(3, phone);
+                stmnt.setInt(4, products.get(i).getId());
+                stmnt.setInt(5, products.get(i).getAmount());
+                stmnt.setInt(6, products.get(i).getSize());
                 
                 stmnt.executeUpdate();
             }

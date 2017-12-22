@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/WebStoreService/ServiceStore?WSDL" uri="src/conf/xml-resources/web-service-references/ServiceStore/wsdl/localhost_8080/WebStoreService/ServiceStore.wsdl"/>
-    <system systemId="http://localhost:8080/WebStoreService/ServiceStore?xsd=1" uri="src/conf/xml-resources/web-service-references/ServiceStore/wsdl/localhost_8080/WebStoreService/ServiceStore.xsd_1.xsd"/>
-</catalog>

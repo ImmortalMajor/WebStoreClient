@@ -5,11 +5,9 @@ import java.util.Map;
 import javax.jws.WebService;
 import ua.java.store.db.DBCheck;
 import ua.java.store.db.DBProduct;
-import ua.java.store.db.DBUser;
 import ua.java.store.objects.Check;
 import ua.java.store.objects.Manufacturer;
 import ua.java.store.objects.Product;
-import ua.java.store.objects.User;
 
 @WebService(serviceName="ServiceStore")
 public class ServiceStore {
@@ -22,8 +20,8 @@ public class ServiceStore {
         return DBCheck.getInstance().getChecks();
     }
     
-    public boolean insertCheck(int idU, ArrayList<Product> products){
-        return DBCheck.getInstance().insertCheck(idU, products);
+    public boolean insertCheck(String name, String phone, ArrayList<Product> products){
+        return DBCheck.getInstance().insertCheck(name, phone, products);
     }
     
     public boolean deleteCheck(int id){
@@ -76,35 +74,6 @@ public class ServiceStore {
     
     public boolean deleteManuf(int id){
         return DBProduct.getInstance().deleteManuf(id);
-    }
-    
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
-    public ArrayList<User> getAllUsers(){
-        return DBUser.getInstance().getUsers();
-    }
-    
-    public ArrayList<User> getUserById(int id){
-        return DBUser.getInstance().getUsers(id);
-    }
-    
-    public ArrayList<User> getUserByName(String name){
-        return DBUser.getInstance().getUsers(name);
-    }
-    
-    public User getUser(String login, String password){
-        return DBUser.getInstance().getUsers(login, password).get(0);
-    }
-    
-    public boolean updateUser(int id, String name, String phone, String login, String password, String email){
-        return DBUser.getInstance().updateUser(id, name, phone, login, password, email);
-    }
-    
-    public boolean insertUser(String name, String phone, String login, String password, String email){
-        return DBUser.getInstance().insertUser(name, phone, login, password, email);
-    }
-    
-    public boolean deleteUser(int id){
-        return DBUser.getInstance().deleteUser(id);
     }
     
 }

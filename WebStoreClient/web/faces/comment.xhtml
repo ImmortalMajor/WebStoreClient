@@ -15,12 +15,10 @@
                 <h:form>
                     
                     <span class="f-l">ФИО</span>
-                    <h:inputText value="#{mes.fio}"  styleClass="fio" onblur="fio(this)" 
-                                 required="true" id="com-fio"/>
+                    <h:inputText value="#{mes.fio}"  styleClass="fio" onblur="fio(this)"  id="com-fio"/>
 
                     <span class="f-l">E-mail</span> <label class="f-r">example@ex.com</label>
-                    <h:inputText value="#{mes.email}"  styleClass="email" onblur="email(this)" 
-                                 required="true" id="com-mail"/>
+                    <h:inputText value="#{mes.email}"  styleClass="email" onblur="email(this)"  id="com-mail"/>
 
                     <span class="f-l">Сообщение</span>
                     <h:inputTextarea styleClass="textarea" rows="7" value="#{mes.message}" id="com-text"/>
@@ -29,7 +27,7 @@
 
                     <h:commandLink styleClass="btn-light" id="send_mes" onclick="commentValid()">
                         Отправить
-                        <f:ajax execute="@form" event="click" onevent="show('#comment')" listener="#{mes.send()}"/>
+                        <f:ajax execute="@form" event="click" onevent="show('#comment')" listener="#{mes.sendMessage()}"/>
                     </h:commandLink>
                     
                 </h:form>

@@ -18,7 +18,7 @@ import web.java.service.Product;
 public class BasketList implements Serializable {
          
          private List<Product> basket;
-         private int size = 42;
+         private int size = 38;
          private int amount = 1;
          
          public BasketList(){}
@@ -38,7 +38,7 @@ public class BasketList implements Serializable {
          
          public void basketAction(AjaxBehaviorEvent e) throws AbortProcessingException{
                   
-                  if(size < 42 || size > 56){ size = 42; return;}
+                  if(size < 38 || size > 56){ size = 38; amount = 1; return;}
                   if(amount < 1){ amount = 1; return;}
                   
                   Map<String, String> params = 
@@ -63,7 +63,7 @@ public class BasketList implements Serializable {
                            basket.add(p);
                   } 
                   
-                  size = 42;
+                  size = 38;
                   amount = 1;
          }
          

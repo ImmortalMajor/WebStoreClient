@@ -112,6 +112,15 @@ label {
     background-size: cover !important;
     box-shadow: 0 0 0 5000px rgba(0,0,0,0.3) inset;
 }
+
+    .slider p{
+        padding: 0.2em 1em;
+        color: #fff;
+        text-indent: 5%;
+        font-size: 13pt;
+        text-transform: uppercase;
+        text-align: justify;
+    }
     
 .main-conteiner {
     width: 78%;
@@ -389,6 +398,15 @@ label {
         padding: 5px;
         border: solid 2px black;
     }
+    
+    .info p {
+        padding: 0.2em 1em;
+        text-indent: 5%;
+        font-size: 13pt;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: justify;
+    }
  
 .conteiner-lg {
     padding: 5em 0;
@@ -494,4 +512,8 @@ input {
 
 span[id*="Valid"] {
     color: red;
+}
+
+.dark {
+    box-shadow: 0 0 0 5000px rgba(0,0,0,0.7) inset !important;
 }

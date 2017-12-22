@@ -34,7 +34,7 @@
                     Общая сумма: <h3>#{basket.fullCost}$</h3>
                     
                     <h:commandButton styleClass="btn-black" value="Готово">
-                        <f:ajax execute="@form" event="click" listener="#{basket.cleanBasket(order.makeOrder(basket.basket.size()))}"/>
+                        <f:ajax execute="@form" event="click" listener="#{basket.cleanBasket(order.makeOrder(basket.basket))}"/>
                     </h:commandButton>
                     
                     </h:form>

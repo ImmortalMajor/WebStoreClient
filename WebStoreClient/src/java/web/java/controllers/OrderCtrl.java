@@ -1,7 +1,9 @@
 package web.java.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -11,7 +13,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import web.java.functions.MakeCheck;
 import web.java.functions.Messenger;
+import web.java.service.Product;
 
 @ManagedBean(name = "order")
 @RequestScoped
@@ -22,10 +26,10 @@ public class OrderCtrl {
          private String address = "";
          private String phone = "";
          
-         public String makeOrder(int length) {
+         public String makeOrder(List<Product> basket) {
                   
                   try {
-                           if(!check() || length == 0) return "no";
+                           if(!check() || basket.isEmpty()) return "no";
                            
                            Messenger mes = new Messenger();
                            Date date = new Date();
@@ -38,6 +42,8 @@ public class OrderCtrl {
                            mes.setEmail(email);
                            mes.setFullMesage(message);
                            mes.send();
+                           
+                           MakeCheck makeCheck = new MakeCheck(fio, phone, new ArrayList<>(basket));
                            
                            System.out.println("-------------------------------------------order maked");
                            return "yes";

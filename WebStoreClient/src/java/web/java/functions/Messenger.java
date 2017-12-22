@@ -17,8 +17,6 @@ import javax.mail.internet.MimeMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@ManagedBean(name = "mes")
-@RequestScoped
 public class Messenger {
          
          private final String MAIL_SUPPORT_PARAM = "mail.SUPPORT";
@@ -35,12 +33,8 @@ public class Messenger {
                            Message msg = new MimeMessage(getSession());
 
                            InternetAddress to = new InternetAddress(mailRecipient);
-                           //InternetAddress from = new InternetAddress(email);
                            
                            msg.setRecipient(RecipientType.TO, to);
-                           //msg.setFrom(from);
-                           if(fullMessage.equals(""))
-                                    fullMessage = getFio() + ". " + getMessage();
                            
                            msg.setText(fullMessage);
                            msg.setSubject(getEmail());

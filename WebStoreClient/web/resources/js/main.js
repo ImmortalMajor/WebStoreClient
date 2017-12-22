@@ -22,11 +22,18 @@ $(document).ready(() => {
     $("textarea.textarea").keyup(function() {
         var $textarea = $(this);
         var max = 300;
+
         if ($textarea.val().length > max) {
             $textarea.val($textarea.val().substr(0, max));
         }
     });
     
+    $("textarea.textarea").focusout(function (){
+        if($(this).val().length < 1)
+            $(this).css("box-shadow", "0 0 0 1px rgb(255,0,0) inset");
+        else
+            $(this).css("box-shadow", "0 0 0 1px rgb(30,30,30) inset");
+    });
     
 });
 
@@ -75,7 +82,7 @@ function phone(el){
 }
 
 function sizeValid(el) {
-    if($(el).val() < 42 || $(el).val() > 56) $("#sizeValid").html("<small>*размер должен быть не менее 42 и не более 56</small>");
+    if($(el).val() < 38 || $(el).val() > 56) $("#sizeValid").html("<small>*размер должен быть не менее 38 и не более 56</small>");
     else $("#sizeValid").empty();   
 }
 
